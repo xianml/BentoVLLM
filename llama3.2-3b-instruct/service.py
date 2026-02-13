@@ -17,7 +17,6 @@ if typing.TYPE_CHECKING:
 else:
   Jsonable = typing.Any
 
-
 class BentoArgs(pydantic.BaseModel):
   tp: int = 1
   v1: bool = True

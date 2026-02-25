@@ -130,7 +130,7 @@ class BentoArgs(pydantic.BaseModel):
 bento_args = bentoml.use_arguments(BentoArgs)
 
 image = (
-  bentoml.images.Image(base_image="nvidia/cuda:13.1.1-cudnn-runtime-ubuntu24.04", python_version='3.12').system_packages('curl', 'git').requirements_file('requirements.txt')
+  bentoml.images.Image(base_image="nvidia/cuda:13.1.1-cudnn-runtime-ubuntu24.04", python_version='3.12').system_packages('curl', 'git').requirements_file('requirements.txt').run("pip install uv && UV_PYTHON_INSTALL_DIR=/app/python/ uv venv -p 3.12 /app/.venv && source /app/.venv/bin/activate")
 )
 if POST := bento_args.post:
   for cmd in POST:

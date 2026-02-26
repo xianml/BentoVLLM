@@ -130,7 +130,7 @@ class BentoArgs(pydantic.BaseModel):
 bento_args = bentoml.use_arguments(BentoArgs)
 
 cmd1 = "apt-get -y update && apt-get -y install libopenmpi-dev git python3-pip"
-cmd2 = "pip install uv && UV_PYTHON_INSTALL_DIR=/app/python/ uv venv -p 3.12 /app/.venv && source /app/.venv/bin/activate"
+cmd2 = "alias pip=pip3 && pip install uv && UV_PYTHON_INSTALL_DIR=/app/python/ uv venv -p 3.12 /app/.venv && source /app/.venv/bin/activate"
 image = (
   bentoml.images.Image(base_image="nvidia/cuda:13.1.1-cudnn-runtime-ubuntu24.04", python_version='3.12').system_packages('curl', 'git').requirements_file('requirements.txt')
 )

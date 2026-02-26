@@ -132,7 +132,7 @@ bento_args = bentoml.use_arguments(BentoArgs)
 cmd1 = "apt-get -y update && DEBIAN_FRONTEND=noninteractive TZ=Asia/Tokyo apt-get -y install --no-install-recommends tzdata git python3-pip"
 cmd2 = "alias pip=pip3 && pip install --break-system-packages uv && UV_PYTHON_INSTALL_DIR=/app/python/ uv venv -p 3.12 /app/.venv && source /app/.venv/bin/activate"
 image = (
-  bentoml.images.Image(base_image="nvidia/cuda:13.1.1-cudnn-runtime-ubuntu24.04", python_version='3.12').run(cmd1).run(cmd2).system_packages('curl', 'git').requirements_file('requirements.txt')
+  bentoml.images.Image(base_image="nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04", python_version='3.12').run(cmd1).run(cmd2).system_packages('curl', 'git').requirements_file('requirements.txt')
 )
 if POST := bento_args.post:
   for cmd in POST:
